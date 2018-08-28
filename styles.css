@@ -4,6 +4,7 @@ body {
     background-color: #000;
     text-align: center;
     vertical-align: middle;
+    overflow: hidden;
 }
 
 .container {
@@ -14,4 +15,20 @@ body {
 .character {
     position: absolute;
     background-color: #364000;
+    width: 3%;
+    height: 6%;
+}
+
+.passage {
+    width: 6%;
+    height: 3%;
+    background-color: #fff;
+    position: absolute;
+}
+
+.wall {
+    min-width: 1%;
+    min-height: 2%;
+    background-color: #fff;
+    position: absolute;
 }

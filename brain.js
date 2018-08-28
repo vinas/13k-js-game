@@ -1,15 +1,12 @@
 
 var vector,
     charStyle = document.getElementById('char01').style,
-    charHorSpeed = 2,
-    charVerSpeed = 3,
+    charHorSpeed = 1,
+    charVerSpeed = 1,
     action1 = false,
-    action2 = false;
-
-charStyle.width = '3%';
-charStyle.height = '6%';
-charStyle.left = '0%';
-charStyle.top = '0%';
+    action2 = false,
+    charSize = 6,
+    gapBorderTolerance = 2;
 
 document.addEventListener('keydown', function(e) {
     var key = e.which;
@@ -25,6 +22,10 @@ document.addEventListener('keyup', function(e) {
 
 function gameLoop() {
     handleMovement(getCoord(charStyle.left), getCoord(charStyle.top));
+    if (charReachedExit()) {
+        destroyElements();
+        loadGame();
+    }
     handleAction();
     setTimeout(gameLoop, 15);
 }
@@ -36,8 +37,13 @@ function getCoord(coord) {
 }
 
 function handleMovement(charLeft, charTop) {
-    if (vector > 0 && vector % 2 == 0) charStyle.top = setNewCoord(charTop) + '%';
-    if (vector > 0 && vector % 2 != 0) charStyle.left = setNewCoord(charLeft) + '%';
+    if (vector > 0 && vector % 2 == 0) {
+        charStyle.top = setNewCoord(charTop) + '%';
+    }
+    if (vector > 0 && vector % 2 != 0) {
+        charStyle.left = setNewCoord(charLeft) + '%';
+
+    }
 }
 
 function setNewCoord(charCoord) {
@@ -73,4 +79,28 @@ function handleAction() {
     }
 }
 
+function charReachedExit() {
+    var exit = getCoord(document.getElementById('exit').style.left),
+        charLeft = getCoord(charStyle.left);
+    return getCoord(charStyle.top) == 0 && charLeft >= exit && charLeft + charSize <= exit + charSize + gapBorderTolerance;
+}
+
+
+function loadGame() {
+    Level(2, charSize, gapBorderTolerance);
+}
+
+function destroyElements() {
+    var els = getElementsByClass('destroy'),
+        i;
+    for (i = 0; i < els.length; i++) {
+        els[i].parentNode.removeChild(els[i]);
+    }
+}
+
+function getElementsByClass(className) {
+    return document.getElementsByClassName(className);
+}
+
+loadGame();
 gameLoop();
