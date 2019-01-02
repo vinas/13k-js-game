@@ -49,7 +49,6 @@ var Level = function(generations, charSize, gapBorderTolerance) {
                 } else {
                     wall.style.top = (100 - currVal) + '%';
                 }
-
             }
         });
 

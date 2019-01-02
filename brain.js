@@ -22,10 +22,7 @@ document.addEventListener('keyup', function(e) {
 
 function gameLoop() {
     handleMovement(getCoord(charStyle.left), getCoord(charStyle.top));
-    if (charReachedExit()) {
-        destroyElements();
-        loadGame();
-    }
+    checkCharTouching();
     handleAction();
     setTimeout(gameLoop, 15);
 }
@@ -100,6 +97,14 @@ function destroyElements() {
 
 function getElementsByClass(className) {
     return document.getElementsByClassName(className);
+}
+
+function checkCharTouching() {
+    if (charReachedExit()) {
+        destroyElements();
+        loadGame();
+        return;
+    }
 }
 
 loadGame();
