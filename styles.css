@@ -14,21 +14,17 @@ body {
 
 .character {
     position: absolute;
-    background-color: #364000;
-    width: 3%;
-    height: 6%;
+    background-color: #ccc;
 }
 
 .passage {
     width: 6%;
     height: 3%;
-    background-color: #fff;
+    background-color: #ccc;
     position: absolute;
 }
 
 .wall {
-    min-width: 1%;
-    min-height: 2%;
     background-color: #fff;
     position: absolute;
 }
