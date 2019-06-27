@@ -64,10 +64,20 @@ function Level() {
             wall.setAttribute('class', 'wall destroy');
             wall.setAttribute('id', 'wall'+i);
             document.getElementById('container').appendChild(wall);
+            if(i%2>0){
+                height = 40;
+            } 
             wall.style.height = height + '%';
             wall.style.width = wallWidth + '%';
             wall.style.left = setWallLeft(height);
             wall.style.top = (getRandom(0, 1) == 0) ? '0%' : (100 - height) + '%';
+            
+            if(wall.style.top == '0%'){
+                wall.style.backgroundColor  = '#0000FF';
+            } else {
+                wall.style.backgroundColor  = '#FF6EC7';
+            }
+
             walls.push(wall);
         };
     }

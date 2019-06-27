@@ -13,14 +13,18 @@ function Movements() {
         for (let i = 0; i < walls.length; i++) {
             let wallHeight = getCoord(walls[i].style.height);
             let wallTop = getCoord(walls[i].style.top);
+            
             let wallLeft = getCoord(walls[i].style.left);
             let wallWidth = getCoord(walls[i].style.width);
+
+            
             if (wallTop == 0) {
                 if (
                     (wallTop + wallHeight > charTop)
                     && (charLeft + charWidth > wallLeft)
                     && (wallLeft + wallWidth > charLeft)
                 ) {
+                    console.log('aqui');
                     return true;
                 }
             } else {

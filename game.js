@@ -37,6 +37,7 @@ function handleAction() {
     if (action1) {
         animations.blinkBackground(charStyle, 8, '#FFF', 'transparent');
         action1 = false;
+        window.location.reload();
     }
     if (action2) {
         animations.blinkBackground(charStyle, 1, '#FFF', 'transparent');
