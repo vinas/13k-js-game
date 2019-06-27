@@ -16,19 +16,11 @@ function Level() {
 
     function generate() {
         entrancePos = (getRandom(0, 1) == 0) ? 'left' : 'right';
-        wallsLengths = [];
-        calcWallsLengths();
         setEntrance();
         setExit();
         setCharLocation();
         setWalls();
-        setEnemies();
-    }
-
-    function calcWallsLengths() {
-        for (var i = 0; i < wallsAmount; i++) {
-            wallsLengths.push(parseFloat(calcMaxWallLength(i+1)));
-        }
+        //setEnemy();
     }
 
     function calcMaxWallLength() {
@@ -54,30 +46,30 @@ function Level() {
         character.style.top = '97%';
     }
 
-    function setEnemies() {
+    function setEnemy() {
         let enemy = document.createElement("div");
         enemy.setAttribute('class', 'enemy destroy');
         enemy.setAttribute('id', 'enemy');
         document.getElementById('container').appendChild(enemy);
         enemy.style.height = charHeight + '%';
         enemy.style.width = charWidth + '%';
-        enemy.style.left = (entrancePos == 'left') ? getRandom(50, 100 - charWidth) : getRandom(0, 50 - charWidth);
-        enemy.style.left = (entrancePos == 'left') ? getRandom(50, 100 - charWidth) : getRandom(0, 50 - charWidth);
+        enemy.style.left = (entrancePos == 'left') ? getRandom(50, 100 - charWidth) + '%' : getRandom(0, 50 - charWidth) + '%';
         enemy.style.top = getRandom(0, 100 - charHeight);
     }
 
     function setWalls() {
-        wallsLengths.forEach(function(currVal, idx) {
+        for (let i = 1; i <= wallsAmount; i++) {
+            let height = parseFloat(calcMaxWallLength(i+1));
             let wall = document.createElement("div");
             wall.setAttribute('class', 'wall destroy');
-            wall.setAttribute('id', 'wall'+idx);
+            wall.setAttribute('id', 'wall'+i);
             document.getElementById('container').appendChild(wall);
-            wall.style.height = currVal + '%';
+            wall.style.height = height + '%';
             wall.style.width = wallWidth + '%';
-            wall.style.left = setWallLeft(currVal);
-            wall.style.top = (getRandom(0, 1) == 0) ? '0%' : (100 - currVal) + '%';
+            wall.style.left = setWallLeft(height);
+            wall.style.top = (getRandom(0, 1) == 0) ? '0%' : (100 - height) + '%';
             walls.push(wall);
-        });
+        };
     }
 
     function setWallLeft(teste) {

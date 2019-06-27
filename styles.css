@@ -31,5 +31,5 @@ body {
 
 .enemy {
     position: absolute;
-    background-color: #fff;
+    background-color: red;
 }
