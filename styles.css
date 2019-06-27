@@ -14,7 +14,7 @@ body {
 
 .character {
     position: absolute;
-    background-color: #ccc;
+    background-color: transparent;
 }
 
 .passage {
@@ -27,4 +27,9 @@ body {
 .wall {
     background-color: #fff;
     position: absolute;
+}
+
+.enemy {
+    position: absolute;
+    background-color: #fff;
 }

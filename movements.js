@@ -3,18 +3,18 @@ function Movements() {
     this.handleMovement = handleMovement;
     this.charReachedExit = charReachedExit;
     this.charReachedWall = charReachedWall;
+    this.getCoord = getCoord;
 
     return this;
 
     function charReachedWall() {
-        var charTop = getCoord(charStyle.top);
-        var charLeft = getCoord(charStyle.left);
-        var charWidth = getCoord(charStyle.width);
-        for (var i = 0; i < walls.length; i++) {
-            var wallHeight = getCoord(walls[0].style.height);
-            var wallTop = getCoord(walls[0].style.top);
-            var wallLeft = getCoord(walls[0].style.left);
-            var wallWidth = getCoord(walls[0].style.width);
+        let charTop = getCoord(charStyle.top);
+        let charLeft = getCoord(charStyle.left);
+        for (let i = 0; i < walls.length; i++) {
+            let wallHeight = getCoord(walls[i].style.height);
+            let wallTop = getCoord(walls[i].style.top);
+            let wallLeft = getCoord(walls[i].style.left);
+            let wallWidth = getCoord(walls[i].style.width);
             if (wallTop == 0) {
                 if (
                     (wallTop + wallHeight > charTop)
@@ -23,27 +23,28 @@ function Movements() {
                 ) {
                     return true;
                 }
-                return false;
+            } else {
+                if (
+                    (wallTop < charTop + charHeight)
+                    && (charLeft + charWidth > wallLeft)
+                    && (wallLeft + wallWidth > charLeft)
+                ) {
+                    return true;
+                }
             }
-            if (
-                (wallTop < charTop + charHeight)
-                && (charLeft + charWidth > wallLeft)
-                && (wallLeft + wallWidth > charLeft)
-            ) return true;
-
         }
         return false;
     }
 
     function handleMovement() {
-        var oldTop, oldLeft;
+        let oldTop, oldLeft;
         if (vector > 0 && vector % 2 == 0) {
-            oldTOp = getCoord(charStyle.top);
-            charStyle.top = setNewCoord(getCoord(charStyle.top)) + '%';
+            oldTop = getCoord(charStyle.top);
+            charStyle.top = setNewCoord(oldTop) + '%';
         }
         if (vector > 0 && vector % 2 != 0) {
             oldLeft = getCoord(charStyle.left);
-            charStyle.left = setNewCoord(getCoord(charStyle.left)) + '%';
+            charStyle.left = setNewCoord(oldLeft) + '%';
         }
         if (movements.charReachedWall()) {
             charStyle.top = oldTop + '%';

@@ -27,7 +27,7 @@ function gameLoop() {
 function checkCharTouching() {
     if (movements.charReachedExit()) {
         destroyElements();
-        wallsAmount++;
+        if (wallsAmount < 8) wallsAmount++;
         loadGame(wallsAmount);
         return;
     }
@@ -47,6 +47,7 @@ function handleAction() {
 function destroyElements() {
     var els = document.getElementsByClassName('destroy');
     var limit = els.length;
+    walls = [];
     for (var i = 0; i < limit; i++) {
         els[0].parentNode.removeChild(els[0]);
     }
