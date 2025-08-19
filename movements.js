@@ -1,5 +1,8 @@
 function Movements() {
 
+  let charHorSpeed = .5;
+  let charVerSpeed = 1;
+
   this.handleMovement = handleMovement;
   this.charReachedExit = charReachedExit;
   this.charReachedWall = charReachedWall;
